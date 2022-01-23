@@ -1,7 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <iostream>
 
-#include "doctest/doctest.h"
+#include "doctest.h"
 
 TEST_CASE("lots of nested subcases") {
     std::cout << '\n' << "root" << '\n';

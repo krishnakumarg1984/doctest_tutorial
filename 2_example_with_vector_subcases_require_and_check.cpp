@@ -1,5 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest/doctest.h"
+#include "doctest.h"
 
 TEST_CASE("vectors can be sized and resized") {
     std::vector<int> v(5);
