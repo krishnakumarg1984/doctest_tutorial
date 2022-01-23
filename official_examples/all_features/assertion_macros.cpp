@@ -1,4 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#define DOCTEST_CONFIG_NO_UNPREFIXED_OPTIONS
+
 #include "doctest/doctest.h"
 // #include "header.h"
 
