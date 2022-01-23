@@ -1,4 +1,4 @@
-#include <doctest/doctest.h>
+#include "doctest/doctest.h"
 
 DOCTEST_MAKE_STD_HEADERS_CLEAN_FROM_WARNINGS_ON_WALL_BEGIN
 #include <vector>
@@ -19,7 +19,7 @@ TYPE_TO_STRING(std::vector<int>);
 
 TEST_CASE_TEMPLATE("vector stuff", T, std::vector<int>) {
     T vec(10);
-    CHECK(vec.size() == 20); // will fail
+    CHECK(vec.size() == 20);  // will fail
 }
 
 // =================================================================================================
@@ -32,7 +32,7 @@ TEST_CASE_TEMPLATE_DEFINE("default construction", T, test_id) {
 }
 
 TEST_CASE_TEMPLATE_INVOKE(test_id, signed char, short, int);
-TEST_CASE_TEMPLATE_INVOKE(test_id, double, double); // note that types won't be filtered for uniqueness
+TEST_CASE_TEMPLATE_INVOKE(test_id, double, double);  // note that types won't be filtered for uniqueness
 
 TEST_CASE_TEMPLATE_APPLY(test_id, std::tuple<unsigned char, char>);
 
@@ -41,9 +41,8 @@ TEST_CASE_TEMPLATE_APPLY(test_id, std::tuple<unsigned char, char>);
 // =================================================================================================
 
 template <typename first, typename second>
-struct TypePair
-{
-    typedef first  A;
+struct TypePair {
+    typedef first A;
     typedef second B;
 };
 
@@ -57,7 +56,8 @@ TEST_CASE_TEMPLATE("multiple types", T, TypePair<int, char>, TypePair<char, int>
     CHECK(t2 != T2());
 }
 
-// currently the string result will be "int_pair" instead of "TypePair<int, int>" because of the way the type stringification works
+// currently the string result will be "int_pair" instead of "TypePair<int, int>" because of the way the type
+// stringification works
 typedef TypePair<int, int> int_pair;
 TYPE_TO_STRING(int_pair);
 

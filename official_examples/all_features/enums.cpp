@@ -1,14 +1,16 @@
-#include <doctest/doctest.h>
+#ifndef DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#endif  // !DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
-#include "header.h"
+#include "doctest/doctest.h"
+// #include "header.h"
 
 DOCTEST_MAKE_STD_HEADERS_CLEAN_FROM_WARNINGS_ON_WALL_BEGIN
 #include <cstdint>
 #include <sstream>
 DOCTEST_MAKE_STD_HEADERS_CLEAN_FROM_WARNINGS_ON_WALL_END
 
-namespace
-{
+namespace {
 
 enum StandardEnum
 {
@@ -27,22 +29,22 @@ enum TypedEnum : int64_t
 enum class EnumClassC : char
 {
     Zero = '0',
-    One = '1',
-    Two = '2',
+    One  = '1',
+    Two  = '2',
 };
 
 enum class EnumClassSC : signed char
 {
     Zero = '0',
-    One = '1',
-    Two = '2',
+    One  = '1',
+    Two  = '2',
 };
 
 enum class EnumClassUC : unsigned char
 {
     Zero = '0',
-    One = '1',
-    Two = '2',
+    One  = '1',
+    Two  = '2',
 };
 
 enum class EnumClassU8 : uint8_t
@@ -52,37 +54,34 @@ enum class EnumClassU8 : uint8_t
     Two,
 };
 
-template<class E, class T = typename std::underlying_type<E>::type>
-T printable(E val)
-{
+template <class E, class T = typename std::underlying_type<E>::type>
+T printable(E val) {
     return T(val);
 }
 
-}
+}  // namespace
 
-TEST_CASE("enum 1")
-{
-    std::ostringstream ostr;
-    ostr << Zero << One << Two;
-    ostr << TypedZero << TypedOne << TypedTwo;
-    static_assert(std::is_enum<EnumClassSC>::value, "");
-    ostr << printable(EnumClassSC::Zero) << printable(EnumClassSC::One) << printable(EnumClassSC::Two);
+// TEST_CASE("enum 1") {
+//     std::ostringstream ostr;
+//     ostr << Zero << One << Two;
+//     ostr << TypedZero << TypedOne << TypedTwo;
+//     static_assert(std::is_enum<EnumClassSC>::value, "");
+//     ostr << printable(EnumClassSC::Zero) << printable(EnumClassSC::One) << printable(EnumClassSC::Two);
+//
+//     CHECK_EQ(Zero, 0);
+//     CHECK_EQ(One, 1);
+//     CHECK_EQ(Two, 2);
+//
+//     CHECK_EQ(TypedZero, 0);
+//     CHECK_EQ(TypedOne, 1);
+//     CHECK_EQ(TypedTwo, 2);
+//
+//     CHECK_EQ(EnumClassSC::Zero, EnumClassSC::Zero);
+//     CHECK_EQ(EnumClassSC::One, EnumClassSC::One);
+//     CHECK_EQ(EnumClassSC::Two, EnumClassSC::Two);
+// }
 
-    CHECK_EQ(Zero, 0);
-    CHECK_EQ(One, 1);
-    CHECK_EQ(Two, 2);
-
-    CHECK_EQ(TypedZero, 0);
-    CHECK_EQ(TypedOne, 1);
-    CHECK_EQ(TypedTwo, 2);
-
-    CHECK_EQ(EnumClassSC::Zero, EnumClassSC::Zero);
-    CHECK_EQ(EnumClassSC::One, EnumClassSC::One);
-    CHECK_EQ(EnumClassSC::Two, EnumClassSC::Two);
-}
-
-TEST_CASE("enum 2" * doctest::should_fail())
-{
+TEST_CASE("enum 2" * doctest::should_fail()) {
     CHECK_EQ(Zero, 1);
     CHECK_EQ(One, 2);
     CHECK_EQ(Two, 3);
